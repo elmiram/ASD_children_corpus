@@ -1,0 +1,146 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{% trans 'ERROR TAGS' %}</title>
+    <script src="{% static "js/jquery.js" %}"></script>
+    <link href="{% static "css/bootstrap.flatly.css" %}" rel="stylesheet">
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+          <link href="{% static "css/style.css" %}" rel="stylesheet">
+          <link href="{% static "css/styles.css" %}" rel="stylesheet">
+	<script language="JavaScript" src="{% static "js/gramsel.js" %}"></script>
+	<script language="JavaScript" src="{% static "js/urlprocessor.js" %}"></script>
+
+</head>
+<body onLoad="InitWindow()">
+<div class="container">
+<div class="row" style="font-size: smaller">
+
+  <form name="gramForm" id="gramForm" action="">
+    <div class="row">
+        <div class="col-sm-4">
+<div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 title="Invert" class="panel-title gr_inv activeA grammar" onClick="inverse('spelling')">{% trans 'Spelling errors' %}</h3>
+          </div>
+        <div class="panel-body">
+          <div class="gr_group">
+  <input type="checkbox" name="spelling" value="spelling" id="spellingSpelling">&nbsp;<label for="spellingSpelling">spelling</label><br/>
+<input type="checkbox" name="spelling" value="mirror" id="spellingmirror">&nbsp;<label for="spellingmirror">mirror</label><br/>
+<input type="checkbox" name="spelling" value="stressed_change" id="spellingstressed_change">&nbsp;<label for="spellingstressed_change">stressed_change</label><br/>
+<input type="checkbox" name="spelling" value="cut" id="spellingcut">&nbsp;<label for="spellingcut">cut</label><br/>
+<input type="checkbox" name="spelling" value="similar_letters" id="spellingsimilar_letters">&nbsp;<label for="spellingsimilar_letters">similar_letters</label><br/>
+          </div>
+        </div>
+        </div>
+<div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 title="Invert" class="panel-title activeA  gr_inv grammar" onClick="inverse('lex')">{% trans 'Lexical errors' %}</h3>
+          </div>
+        <div class="panel-body">
+          <div class="gr_group">
+<input type="checkbox" name="lex" value="lex" id="lexlex">&nbsp;<label for="lexlex">lex</label><br/>
+<input type="checkbox" name="lex" value="deriv" id="lexderiv">&nbsp;<label for="lexderiv">deriv</label><br/>
+<input type="checkbox" name="lex" value="inaccurate" id="lexinaccurate">&nbsp;<label for="lexinaccurate">inaccurate</label><br/>
+<input type="checkbox" name="lex" value="inapropriate" id="lexinapropriate">&nbsp;<label for="lexinapropriate">inapropriate</label><br/>
+<input type="checkbox" name="lex" value="morph_deriv" id="lexmorph_deriv">&nbsp;<label for="lexmorph_deriv">morph_deriv</label><br/>
+<input type="checkbox" name="lex" value="context_meaning" id="lexcontext_meaning">&nbsp;<label for="lexcontext_meaning">context_meaning</label><br/>
+<input type="checkbox" name="lex" value="intens" id="lexintens">&nbsp;<label for="lexintens">intens</label><br/>
+<input type="checkbox" name="lex" value="actualization" id="lexactualization">&nbsp;<label for="lexactualization">actualization</label><br/>
+<input type="checkbox" name="lex" value="hyperonym" id="lexhyperonym">&nbsp;<label for="lexhyperonym">hyperonym</label><br/>
+          </div>
+        </div>
+        </div>
+
+    </div>
+<div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 title="Invert" class="gr_inv panel-title activeA grammar" onClick="inverse('syntax')">{% trans 'Syntactic errors' %}</h3>
+          </div>
+        <div class="panel-body">
+          <div class="gr_group">
+<input type="checkbox" name="syntax" value="syntax" id="syntaxsyntax">&nbsp;<label for="syntaxsyntax">syntax</label><br/>
+<input type="checkbox" name="syntax" value="prep_absence" id="syntaxprep_absence">&nbsp;<label for="syntaxprep_absence">prep_absence</label><br/>
+<input type="checkbox" name="syntax" value="DO_absence" id="syntaxDO_absence">&nbsp;<label for="syntaxDO_absence">DO_absence</label><br/>
+<input type="checkbox" name="syntax" value="subject_absence" id="syntaxsubject_absence">&nbsp;<label for="syntaxsubject_absence">subject_absence</label><br/>
+<input type="checkbox" name="syntax" value="coord" id="syntaxcoord">&nbsp;<label for="syntaxcoord">coord</label><br/>
+<input type="checkbox" name="syntax" value="gov" id="syntaxgov">&nbsp;<label for="syntaxgov">gov</label><br/>
+<input type="checkbox" name="syntax" value="ref" id="syntaxref">&nbsp;<label for="syntaxref">ref</label><br/>
+<input type="checkbox" name="syntax" value="ellipse" id="syntaxellipse">&nbsp;<label for="syntaxellipse">ellipse</label><br/>
+<input type="checkbox" name="syntax" value="complex" id="syntaxcomplex">&nbsp;<label for="syntaxcomplex">complex</label><br/>
+<input type="checkbox" name="syntax" value="correct_movement" id="syntaxcorrect_movement">&nbsp;<label for="syntaxcorrect_movement">correct_movement</label><br/>
+<input type="checkbox" name="syntax" value="incorrect_movement" id="syntaxincorrect_movement">&nbsp;<label for="syntaxincorrect_movement">incorrect_movement</label><br/>
+<input type="checkbox" name="syntax" value="coherence_overuse" id="syntaxcoherence_overuse">&nbsp;<label for="syntaxcoherence_overuse">coherence_overuse</label><br/>
+<input type="checkbox" name="syntax" value="pair" id="syntaxpair">&nbsp;<label for="syntaxpair">pair</label><br/>
+          </div>
+        </div>
+        </div>
+    <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3  title="Invert" class="panel-title activeA grammar gr_inv"  onClick="inverse('ortho')">{% trans 'Orthographical errors' %}</h3>
+          </div>
+        <div class="panel-body">
+          <div class="gr_group">
+<input type="checkbox" name="ortho" value="phon_clitic" id="orthophon_clitic">&nbsp;<label for="orthophon_clitic">phon_clitic</label><br/>
+<input type="checkbox" name="ortho" value="prefOrPrep" id="orthoprefOrPrep">&nbsp;<label for="orthoprefOrPrep">prefOrPrep</label><br/>
+<input type="checkbox" name="ortho" value="phon_reduced" id="orthophon_reduced">&nbsp;<label for="orthophon_reduced">phon_reduced</label><br/>
+<input type="checkbox" name="ortho" value="phon" id="orthophon">&nbsp;<label for="orthophon">phon</label><br/>
+          </div>
+        </div>
+        </div>
+      </div>
+<div class="col-sm-4">
+<div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 title="Invert" class="panel-title gr_inv activeA grammar"  onClick="inverse('sem')">{% trans 'Semantic errors' %}</h3>
+          </div>
+        <div class="panel-body">
+          <div class="gr_group">
+<input type="checkbox" name="sem" value="sem" id="semsem">&nbsp;<label for="semsem">sem</label><br/>
+<input type="checkbox" name="sem" value="lex_lack" id="semlex_lack">&nbsp;<label for="semlex_lack">lex_lack</label><br/>
+<input type="checkbox" name="sem" value="predicate_abs" id="sempredicate_abs">&nbsp;<label for="sempredicate_abs">predicate_abs</label><br/>
+<input type="checkbox" name="sem" value="trans_topic" id="semtrans_topic">&nbsp;<label for="semtrans_topic">trans_topic</label><br/>
+<input type="checkbox" name="sem" value="obscure" id="semobscure">&nbsp;<label for="semobscure">obscure</label><br/>
+<input type="checkbox" name="sem" value="detachment" id="semdetachment">&nbsp;<label for="semdetachment">detachment</label><br/>
+          </div>
+        </div>
+        </div>
+    <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 title="Invert" class="gr_inv panel-title activeA grammar" onClick="inverse('narr')">{% trans 'Narrative' %}</h3>
+          </div>
+        <div class="panel-body">
+          <div class="gr_group">
+<input type="checkbox" name="narr" value="narr" id="narrnarr">&nbsp;<label for="narrnarr">narr</label><br/>
+<input type="checkbox" name="narr" value="ref" id="narrref">&nbsp;<label for="narrref">ref</label><br/>
+<input type="checkbox" name="narr" value="contradiction" id="narrcontradiction">&nbsp;<label for="narrcontradiction">contradiction</label><br/>
+<input type="checkbox" name="narr" value="exp_projection" id="narrexp_projection">&nbsp;<label for="narrexp_projection">exp_projection</label><br/>
+<input type="checkbox" name="narr" value="unexpessed_idea" id="narrunexpessed_idea">&nbsp;<label for="narrunexpessed_idea">unexpessed_idea</label><br/>
+<input type="checkbox" name="narr" value="coherence_overuse" id="narrcoherence_overuse">&nbsp;<label for="narrcoherence_overuse">coherence_overuse</label><br/>
+<input type="checkbox" name="narr" value="coherence_incorrect" id="narrcoherence_incorrect">&nbsp;<label for="narrcoherence_incorrect">coherence_incorrect</label><br/>
+<input type="checkbox" name="narr" value="coherence_absence" id="narrcoherence_absence">&nbsp;<label for="narrcoherence_absence">coherence_absence</label><br/>
+<input type="checkbox" name="narr" value="sentence_order" id="narrsentence_order">&nbsp;<label for="narrsentence_order">sentence_order</label><br/>
+<input type="checkbox" name="narr" value="reality_ref" id="narrreality_ref">&nbsp;<label for="narrreality_ref">reality_ref</label><br/>
+          </div>
+        </div>
+        </div>
+      </div>
+        </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel-footer" align="center">
+<input type="button" class="btn btn-default" onClick="collect();return false;" value="{% trans 'OK' %}">
+<input type="button" class="btn btn-default" onClick="document.all.gramForm.reset();return false;" value="{% trans 'Clear' %}">
+<input type="button" class="btn btn-default" onClick="window.close();return false;" value="{% trans 'Cancel' %}">
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+</body>
+</html>
